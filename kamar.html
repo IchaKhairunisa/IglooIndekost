@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Igloo Indekost</title>
+
+        <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendor/boxicons/css/boxicons.min.css">
+
+        <link rel="stylesheet" href="assets/css/aside.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+
+    <body class="sb-expanded">
+        <aside>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class='bx bx-home'></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="active">
+                            <i class='bx bx-bed'></i>
+                            <span>Data Kamar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pemesanan.html">
+                            <i class='bx bx-receipt'></i>
+                            <span>Data Pemesanan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="penghuni.html">
+                            <i class='bx bx-group'></i>
+                            <span>Data Penghuni</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pembayaran.html">
+                            <i class='bx bx-wallet'></i>
+                            <span>Data Pembayaran</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class='bx bx-cog'></i>
+                            <span>Pengaturan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-resize-btn="">
+                            <i class='bx bx-chevrons-right'></i>
+                            <span>Collapse</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <div class="top-bar">
+                <button class="btn-add" id="addRoomBtn">+ Tambah kamar</button>
+                <div class="search-wrapper">
+                    <i class='bx bx-search'></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Cari Kamar">
+                </div>
+            </div>
+            
+            <div class="main-container">
+                <table class="table" style="width: 100%; margin-top: 1rem;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Kamar</th>
+                            <th>Fasilitas</th>
+                            <th>Gambar</th>
+                            <th>Harga</th>
+                            <th>Status</th>
+                            <th>Opsi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roomTableBody"></tbody>
+                </table>
+            </div>
+            
+            <div class="modal" id="roomModal">
+                <div class="modal-content">
+                    <h3 id="modalTitle">Tambah Kamar</h3>
+                    <input type="text" id="roomName" placeholder="Nama Kamar">
+                    <input type="text" id="roomFacilities" placeholder="Fasilitas (pisahkan dengan koma)">
+                    <input type="number" id="roomPrice" placeholder="Harga">
+                    <input type="file" id="roomImage" accept="image/*">
+                    <select id="roomStatus">
+                        <option value="Kosong">Kosong</option>
+                        <option value="Terisi">Terisi</option>
+                    </select>
+                    <div class="form-buttons">
+                        <button class="btn-save" id="saveRoomBtn">Simpan</button>
+                        <button class="btn-cancel" id="cancelRoomBtn">Batal</button>
+                    </div>
+                </div>
+            </div>            
+        </main>
+
+        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/vendor/jquery/jquery-3.5.1.min.js"></script>
+        <script src="assets/vendor/one-page/scrollIt.min.js"></script>
+
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>
