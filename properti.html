@@ -124,127 +124,30 @@
     </style>
 </head>
 <body class="sb-expanded">
-
-    <!-- Sidebar -->
-    <aside>
-        <nav>
-            <ul>
-                <li><a href="#" class="active"><i class="bx bx-home"></i><span>Dashboard</span></a></li>
-                <li><a href="kamar.html"><i class="bx bx-bed"></i><span>Data Kamar</span></a></li>
-                <li><a href="pemesanan.html"><i class="bx bx-receipt"></i><span>Data Pemesanan</span></a></li>
-                <li><a href="penghuni.html"><i class="bx bx-group"></i><span>Data Penghuni</span></a></li>
-                <li><a href="pembayaran.html"><i class="bx bx-wallet"></i><span>Data Pembayaran</span></a></li>
-                <li><a href="settings.html"><i class="bx bx-cog"></i><span>Pengaturan</span></a></li>
-                <li><a href="#" data-resize-btn><i class="bx bx-chevrons-right"></i><span>Collapse</span></a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Main Content Wrapper -->
     <main>
-        <div class="content">
+        <div class="cards-wrapper" id="cardsWrapper">
+            <!-- Contoh card properti -->
             <div class="card">
-                <div class="illustration">
-                    <img src="https://via.placeholder.com/300x250?text=Ilustrasi" alt="Ilustrasi Properti">
-                </div>
+                <img src="https://via.placeholder.com/250x150" alt="Properti">
+                <h4>Nama Properti</h4>
+                <p>Alamat Properti</p>
+            </div>
 
-                <div class="steps">
-                    <h3>Ikuti langkah-langkah ini untuk mulai mengelola properti Anda</h3>
+            <!-- Card plus -->
+            <div class="card-plus" id="addCardBtn">
+                <span style="font-size: 48px; display: block; text-align: center;">+</span>
+            </div>
+        </div>
 
-                    <div class="step active">
-                        <div class="circle">1</div>
-                        Tambahkan properti pertama saya
-                        <button onclick="showForm()" class="btn-add">Tambah</button>
-                    </div>
-
-                    <!-- Modal Form -->
-                    <div id="formModal" class="modal" role="dialog" aria-modal="true">
-                        <div class="modal-content">
-                            <h3 id="formTitle">Tambah properti baru</h3>
-                            <input type="hidden" id="editingIndex">
-                            <div class="form-group">
-                                <label for="properti">Nama Properti</label>
-                                <input type="text" id="properti" placeholder="Nama Properti *">
-                            </div>
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <input type="text" id="alamat" placeholder="Alamat *">
-                            </div>
-                            <div class="form-group">
-                                <label for="kodePos">Kode Pos</label>
-                                <input type="text" id="kodePos" placeholder="Kode pos *">
-                            </div>
-                            <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <input type="text" id="provinsi" placeholder="Provinsi *">
-                            </div>
-                            <div class="form-group">
-                                <label for="kotaKab">Kota/Kabupaten</label>
-                                <input type="text" id="kotaKab" placeholder="Kota/Kabupaten *">
-                            </div>
-                            <div class="form-group">
-                                <label for="kec">Kecamatan</label>
-                                <input type="text" id="kec" placeholder="Kecamatan *">
-                            </div>
-                            <div class="form-group">
-                                <label for="kel">Kelurahan</label>
-                                <input type="text" id="kel" placeholder="Kelurahan *">
-                            </div>
-                            <div class="form-group">
-                                <label for="nomor">Whatsapp Admin Properti</label>
-                                <input type="text" id="nomor" placeholder="Whatsapp Admin Properti">
-                            </div>
-
-                            <div class="form-buttons">
-                                <button onclick="saveTenant()" class="btn-save">Simpan</button>
-                                <button onclick="hideForm()" class="btn-cancel">Batal</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step inactive">
-                        <div class="circle">2</div>
-                        Tambahkan kamar pertama saya
-                        <button class="btn-add" id="addRoomBtn">Tambah</button>
-                        <div class="modal" id="roomModal">
-                            <div class="modal-content">
-                                <h3 id="modalTitle">Tambah Kamar</h3>
-                                <input type="text" id="roomName" placeholder="Nama Kamar">
-                                <input type="text" id="roomFacilities" placeholder="Fasilitas (pisahkan dengan koma)">
-                                <input type="number" id="roomPrice" placeholder="Harga">
-                                <input type="file" id="roomImage" accept="image/*">
-                                <select id="roomStatus">
-                                    <option value="Kosong">Kosong</option>
-                                    <option value="Terisi">Terisi</option>
-                                </select>
-                                <div class="form-buttons">
-                                    <button class="btn-save" id="saveRoomBtn">Simpan</button>
-                                    <button class="btn-cancel" id="cancelRoomBtn">Batal</button>
-                                </div>
-                            </div>
-                        </div>      
-                    </div>
-
-                    <div class="step inactive">
-                        <div class="circle">3</div>
-                        Tambahkan penyewa pertama saya
-                        <button onclick="showForm()" class="btn-add">Tambah</button>
-                        <div id="formModal" class="modal">
-                            <div class="modal-content">
-                            <h3 id="formTitle">Tambah Penyewa</h3>
-                            <input type="hidden" id="editingIndex">
-                            <input type="text" id="nama" placeholder="Nama">
-                            <input type="text" id="telepon" placeholder="No. Telepon">
-                            <input type="date" id="tanggal">
-                            <input type="text" id="kamar" placeholder="Kamar">
-                            <input type="text" id="harga" placeholder="Harga (cth: Rp1.000.000)">
-                            <div class="form-buttons">
-                                <button onclick="saveTenant()" class="btn-save">Simpan</button>
-                                <button onclick="hideForm()" class="btn-cancel">Batal</button>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="modal" id="propertyModal">
+            <div class="modal-content">
+                <h3>Tambah Properti Baru</h3>
+                <input type="text" id="propertyName" placeholder="Nama Properti">
+                <input type="text" id="propertyAddress" placeholder="Alamat Properti">
+                <input type="text" id="propertyImage" placeholder="Link Gambar">
+                <div class="form-buttons">
+                <button class="btn-save" id="saveProperty">Simpan</button>
+                <button class="btn-cancel" id="cancelProperty">Batal</button>
                 </div>
             </div>
         </div>
@@ -255,71 +158,5 @@
     <script src="assets/vendor/jquery/jquery-3.5.1.min.js"></script>
     <script src="assets/vendor/one-page/scrollIt.min.js"></script>
     <script src="assets/js/script.js"></script>
-
-    <script>
-        // Modal display toggle
-        function showForm() {
-            document.getElementById("formModal").classList.add("show");
-        }
-        function hideForm() {
-            document.getElementById("formModal").classList.remove("show");
-        }
-
-        // Menambahkan logika untuk langkah-langkah yang aktif dan checklist
-        let currentStep = 1; // Untuk melacak langkah yang aktif
-
-        function showForm() {
-            document.getElementById("formModal").classList.add("show");
-        }
-
-        function hideForm() {
-            document.getElementById("formModal").classList.remove("show");
-        }
-
-        function saveTenant() {
-        // Simulate saving data or any process
-        alert('Properti berhasil disimpan!');
-
-        // Langkah pertama selesai
-        const step1 = document.querySelectorAll('.step')[0];
-        const circle1 = step1.querySelector('.circle');
-        step1.classList.add('inactive');
-        circle1.classList.add('checked');
-        step1.querySelector('button').style.display = 'none'; // Menyembunyikan tombol tambah di langkah 1
-
-        // Menutup form modal
-        hideForm();
-
-        // Aktifkan langkah kedua
-        const step2 = document.querySelectorAll('.step')[1];
-        setTimeout(() => {
-            step2.classList.remove('inactive');
-            step2.classList.add('active');  // Langkah 2 menjadi aktif
-            const circle2 = step2.querySelector('.circle');
-            circle2.classList.add('checked');
-            step2.querySelector('button').style.display = 'inline-block'; // Menampilkan tombol tambah di langkah kedua
-        }, 1000);  // Delay 1 detik sebelum langkah kedua muncul
-
-        // Increment langkah berikutnya
-        currentStep = 2;
-
-        // Aktifkan langkah ketiga setelah langkah kedua selesai
-        if (currentStep === 2) {
-            setTimeout(() => {
-                const step3 = document.querySelectorAll('.step')[2];
-                step3.classList.remove('inactive');
-                step3.classList.add('active');
-                const circle3 = step3.querySelector('.circle');
-                circle3.classList.add('checked');
-                step3.querySelector('button').style.display = 'inline-block'; // Menampilkan tombol tambah di langkah ketiga
-            }, 2000);  // Delay 2 detik setelah langkah kedua selesai
-        }
-    }
-
-
-
-
-    </script>
-
 </body>
 </html>

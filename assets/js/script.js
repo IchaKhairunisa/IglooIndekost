@@ -245,3 +245,63 @@ tenants = [
 ];
             
 renderTenants();
+
+// add properti
+console.log("addBtn =", addBtn);
+
+const modal = document.getElementById("propertyModal");
+const addBtn = document.getElementById("addCardBtn");
+const cancelBtn = document.getElementById("cancelProperty");
+const saveBtn = document.getElementById("saveProperty");
+
+const nameInput = document.getElementById("propertyName");
+const addressInput = document.getElementById("propertyAddress");
+const imageInput = document.getElementById("propertyImage");
+
+const wrapper = document.getElementById("cardsWrapper");
+
+addBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+});
+
+cancelBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+  nameInput.value = "";
+  addressInput.value = "";
+  imageInput.value = "";
+});
+
+saveBtn.addEventListener("click", () => {
+  const name = nameInput.value.trim();
+  const address = addressInput.value.trim();
+  const image = imageInput.value.trim();
+
+  if (name && address && image) {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <img src="${image}" alt="${name}">
+        <h4>${name}</h4>
+        <p>${address}</p>
+      `;
+
+      // Sisipkan card baru sebelum tombol plus
+      wrapper.insertBefore(card, addBtn);
+
+      // Bersihkan input & tutup modal
+      nameInput.value = "";
+      addressInput.value = "";
+      imageInput.value = "";
+      modal.style.display = "none";
+} else {
+  alert("Semua field harus diisi!");
+}
+});
+
+// Tutup modal jika klik di luar konten
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
