@@ -1,162 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Igloo Indekost</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Gambar Properti</title>
 
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/boxicons/css/boxicons.min.css">
-    <link rel="stylesheet" href="assets/css/aside.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .cards-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
 
-    <style>
-        .step {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-        }
+    .card, .card-plus {
+      width: 250px;
+      height: 300px;
+      background: #d3d3d3;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
 
-        .circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #4CAF50;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-        }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
 
-        .step.active {
-            font-weight: bold;
-        }
+    .card h4 {
+      margin: 10px 0 0;
+    }
 
-        .step.inactive {
-            opacity: 0.6;
-        }
+    .card p {
+      margin: 5px 0 0;
+    }
 
-        .form-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
+    .card-plus {
+      border: 2px dashed gold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 48px;
+      color: gold;
+    }
 
-        /* Rapiin Form */
-        .form-group {
-            margin-bottom: 15px;
-        }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    .modal.show {
+      display: flex;
+    }
 
-        .form-group label {
-            font-weight: bold;
-        }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+    }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
 
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 100%;
-        }
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
 
-        .modal.show {
-            display: flex;
-        }
+    .btn-save, .btn-cancel {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-        /* Tambahan untuk checklist pada langkah yang selesai */
-        .circle.checked {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            border: 2px solid #4CAF50;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .circle.checked::before {
-            content: '✔';
-            font-size: 20px;
-            color: white;
-        }
-
-        .step.active {
-            font-weight: bold;
-        }
-
-        .step.inactive {
-            opacity: 0.6;
-        }
-
-        /* Menyembunyikan tombol tambah jika belum waktunya */
-        .step button {
-            display: none;
-        }
-
-        .step.active button {
-            display: inline-block;
-        }
-
-
-    </style>
+    .btn-save { background: green; color: white; }
+    .btn-cancel { background: red; color: white; }
+  </style>
 </head>
-<body class="sb-expanded">
-    <main>
-        <div class="cards-wrapper" id="cardsWrapper">
-            <!-- Contoh card properti -->
-            <div class="card">
-                <img src="assets/img/bgBedroom.png" alt="Properti" style="background: #FFF8E7;">
-                <h4>Nama Properti</h4>
-                <p>Alamat Properti</p>
-            </div>
+<body>
 
-            <!-- Card plus -->
-            <div class="card-plus" id="addCardBtn">
-                <span style="font-size: 48px; display: block; text-align: center;">+</span>
-            </div>
-        </div>
+<main>
+  <div class="cards-wrapper" id="cardsWrapper">
+    <!-- Plus card -->
+    <div class="card-plus" id="addCardBtn">+</div>
+  </div>
 
-        <div class="modal" id="propertyModal">
-            <div class="modal-content">
-                <h3>Tambah Properti Baru</h3>
-                <input type="text" id="propertyName" placeholder="Nama Properti">
-                <input type="text" id="propertyAddress" placeholder="Alamat Properti">
-                <input type="text" id="propertyImage" placeholder="Link Gambar">
-                <div class="form-buttons">
-                <button class="btn-save" id="saveProperty">Simpan</button>
-                <button class="btn-cancel" id="cancelProperty">Batal</button>
-                </div>
-            </div>
-        </div>
-    </main>
+  <!-- Modal -->
+  <div class="modal" id="propertyModal">
+    <div class="modal-content">
+      <h3>Tambah Properti</h3>
+      <input type="text" id="propertyName" placeholder="Nama Properti" />
+      <input type="text" id="propertyAddress" placeholder="Alamat Properti" />
+      <input type="file" id="propertyImage" accept="image/*" />
+      <div class="form-buttons">
+        <button class="btn-save" id="saveProperty">Simpan</button>
+        <button class="btn-cancel" id="cancelProperty">Batal</button>
+      </div>
+    </div>
+  </div>
+</main>
 
-    <!-- Scripts -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="assets/vendor/one-page/scrollIt.min.js"></script>
-    <script src="assets/js/script.js"></script>
+<script>
+  const addCardBtn = document.getElementById('addCardBtn');
+  const modal = document.getElementById('propertyModal');
+  const saveBtn = document.getElementById('saveProperty');
+  const cancelBtn = document.getElementById('cancelProperty');
+  const nameInput = document.getElementById('propertyName');
+  const addressInput = document.getElementById('propertyAddress');
+  const imageInput = document.getElementById('propertyImage');
+  const cardsWrapper = document.getElementById('cardsWrapper');
+
+  function clearInputs() {
+    nameInput.value = '';
+    addressInput.value = '';
+    imageInput.value = '';
+  }
+
+  function renderCard(data) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <img src="${data.image}" alt="Properti">
+      <h4>${data.name}</h4>
+      <p>${data.address}</p>
+    `;
+    cardsWrapper.insertBefore(div, addCardBtn);
+  }
+
+  // buka modal
+  addCardBtn.addEventListener('click', () => modal.classList.add('show'));
+
+  // batal
+  cancelBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+    clearInputs();
+  });
+
+  // simpan properti
+  saveBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    const address = addressInput.value.trim();
+    const file = imageInput.files[0];
+
+    if (!name || !address || !file) {
+      alert('Harap isi semua kolom dan pilih gambar!');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imageData = e.target.result;
+      const property = { name, address, image: imageData };
+
+      const stored = JSON.parse(localStorage.getItem('properties')) || [];
+      stored.push(property);
+      localStorage.setItem('properties', JSON.stringify(stored));
+
+      renderCard(property);
+      modal.classList.remove('show');
+      clearInputs();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // tampilkan data dari localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const stored = JSON.parse(localStorage.getItem('properties')) || [];
+    stored.forEach(renderCard);
+  });
+</script>
+
 </body>
 </html>
