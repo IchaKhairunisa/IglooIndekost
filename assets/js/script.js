@@ -65,7 +65,7 @@ function resetForm() {
 
 function openModal(isEdit = false) {
     $('#modalTitle').text(isEdit ? 'Edit Kamar' : 'Tambah Kamar');
-    $('#roomModal').fadeIn(200);
+    $('#roomModal').css('display', 'flex').hide().fadeIn(200); // ganti jadi flex
 }
 
 function closeModal() {
